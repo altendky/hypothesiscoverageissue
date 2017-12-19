@@ -20,3 +20,6 @@ def test_it(list_of_c):
     for c in list_of_c:
         assert isinstance(c, example.f.C)
         assert c.x == 42
+
+    # uncomment to achieve full coverage
+    # example.f.C()
