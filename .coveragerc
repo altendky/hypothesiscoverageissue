@@ -1,0 +1,12 @@
+[run]
+branch = True
+source =
+    example
+
+[paths]
+source =
+   src/example
+   .tox/*/lib/python*/site-packages/example
+
+[report]
+show_missing = True
