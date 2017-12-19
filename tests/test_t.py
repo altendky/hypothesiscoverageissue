@@ -9,12 +9,16 @@ def composite_strategy(draw):
     return example.f.C()
 
 
+def check_c(c):
+    assert isinstance(c, example.f.C)
+    assert c.x == 42
+
+
 def f(list_of_c):
     assert len(list_of_c) > 0
 
     for c in list_of_c:
-        assert isinstance(c, example.f.C)
-        assert c.x == 42
+        check_c(c)
 
     # uncomment to achieve full coverage
     # example.f.C()
@@ -35,3 +39,8 @@ def test_it(list_of_c):
 ))
 def test_it2(list_of_c):
     f(list_of_c)
+
+
+@hypothesis.given(hypothesis.strategies.builds(example.f.C))
+def test_it3(c):
+    check_c(c)
