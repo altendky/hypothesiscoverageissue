@@ -9,12 +9,7 @@ def composite_strategy(draw):
     return example.f.C()
 
 
-@hypothesis.given(hypothesis.strategies.lists(
-    composite_strategy(),
-    min_size=2,
-    max_size=5,
-))
-def test_it(list_of_c):
+def f(list_of_c):
     assert len(list_of_c) > 0
 
     for c in list_of_c:
@@ -23,3 +18,20 @@ def test_it(list_of_c):
 
     # uncomment to achieve full coverage
     # example.f.C()
+
+
+@hypothesis.given(hypothesis.strategies.lists(
+    composite_strategy(),
+    min_size=2,
+    max_size=5,
+))
+def test_it(list_of_c):
+    f(list_of_c)
+
+@hypothesis.given(hypothesis.strategies.lists(
+    hypothesis.strategies.builds(example.f.C),
+    min_size=2,
+    max_size=5,
+))
+def test_it2(list_of_c):
+    f(list_of_c)
