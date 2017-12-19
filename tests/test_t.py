@@ -15,5 +15,8 @@ def composite_strategy(draw):
     max_size=5,
 ))
 def test_it(list_of_c):
+    assert len(list_of_c) > 0
+
     for c in list_of_c:
+        assert isinstance(c, example.f.C)
         assert c.x == 42
